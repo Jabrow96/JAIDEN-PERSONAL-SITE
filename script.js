@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
   const slides = {
     html: [
-      { src: 'img/html1.svg', caption: 'HTML structure' },
-      { src: 'img/html2.svg', caption: 'Semantic elements' }
+      { src: 'img/html-structure.png', caption: 'HTML Structure' },
+      { src: 'img/semantic.png', caption: 'Semantic Elements' }
     ],
     css: [
-      { src: 'img/css1.svg', caption: 'Box model & layouts' },
-      { src: 'img/css2.svg', caption: 'Colors & typography' }
+      { src: 'img/css_box_model.png', caption: 'Box Model & Layouts' },
+      { src: 'img/power-of-colour-in-typography.png', caption: 'Colors & Typography' }
     ],
     js: [
-      { src: 'img/js1.svg', caption: 'DOM manipulation' },
-      { src: 'img/js2.svg', caption: 'Events & interactivity' }
+      { src: 'img/dom.png', caption: 'DOM Manipulation' },
+      { src: 'img/Event.jpg', caption: 'Events & Interactivity' }
     ]
   };
 
