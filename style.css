@@ -1,1 +1,96 @@
-/* Add you CSS here */
+/* Basic reset and body styling */
+body {
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  line-height: 1.6; /* Better readability */
+  margin: 0;
+  padding: 0;
+  color: #333; /* Dark text for contrast */
+  background-color: #f4f4f4; /* Light background */
+}
+
+/* Header styling */
+header {
+  background-color: #333; /* Dark header */
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Navigation menu */
+nav ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+nav li {
+  display: inline; /* Horizontal menu */
+  margin: 0 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none; /* Remove underline */
+}
+
+nav a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Section styling */
+section {
+  max-width: 800px; /* Limit width for readability */
+  margin: 2rem auto; /* Center the sections */
+  padding: 1rem;
+  background-color: white; /* White background for sections */
+  border-radius: 5px; /* Slight rounding for modern look */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+section h2 {
+  color: #333;
+  border-bottom: 2px solid #333; /* Underline for headings */
+  padding-bottom: 0.5rem;
+}
+
+/* Skills list */
+#skills ul {
+  list-style: none; /* Remove bullets */
+  padding: 0;
+}
+
+#skills li {
+  background-color: #f4f4f4; /* Light background for skills */
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 3px;
+}
+
+/* Projects styling */
+.project {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px;
+}
+
+.project h3 {
+  margin-top: 0;
+}
+
+/* Contact section */
+#contact p {
+  margin: 0.5rem 0;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
