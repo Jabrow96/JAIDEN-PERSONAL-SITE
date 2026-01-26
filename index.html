@@ -23,37 +23,37 @@
   <!-- About Me section -->
   <section id="about">
     <h2>About Me</h2>
-    <p>Hello! I am a web development student passionate about creating beautiful and functional websites. This is my personal portfolio where I showcase my projects and skills.</p>
+    <div class="about-inner">
+      <img src="img/me.png" alt="My profile" class="about-img">
+      <div class="about-text">
+        <p>Hello! I am a web development student passionate about creating beautiful and functional websites. This is my personal portfolio where I showcase my projects and skills.</p>
+      </div>
+    </div>
     <!-- You can add an image here later -->
     <!-- <img src="img/profile.jpg" alt="My Profile Picture"> -->
   </section>
 
   <!-- Skills section -->
   <section id="skills">
-    <h2>Skills</h2>
+    <h2>Skills - Hover Over Me!</h2>
     <div class="skills-grid">
+      <!-- Only three skill tiles for current skills -->
       <div class="skill-card" data-skill="html">
         <button class="skill-btn">HTML</button>
-        <div class="skill-preview">
-          <img src="img/html1.svg" class="skill-img" alt="HTML preview">
-          <div class="skill-caption">HTML structure</div>
-        </div>
+        <div class="skill-preview"><img src="img/html1.svg" class="skill-img" alt="HTML preview"></div>
+        <div class="skill-caption">HTML structure and elements</div>
       </div>
 
       <div class="skill-card" data-skill="css">
         <button class="skill-btn">CSS</button>
-        <div class="skill-preview">
-          <img src="img/css1.svg" class="skill-img" alt="CSS preview">
-          <div class="skill-caption">Styling with CSS</div>
-        </div>
+        <div class="skill-preview"><img src="img/css1.svg" class="skill-img" alt="CSS preview"></div>
+        <div class="skill-caption">Styling, colors, and layouts</div>
       </div>
 
       <div class="skill-card" data-skill="js">
         <button class="skill-btn">JavaScript</button>
-        <div class="skill-preview">
-          <img src="img/js1.svg" class="skill-img" alt="JavaScript preview">
-          <div class="skill-caption">Interactive scripts</div>
-        </div>
+        <div class="skill-preview"><img src="img/js1.svg" class="skill-img" alt="JS preview"></div>
+        <div class="skill-caption">Interactivity and DOM</div>
       </div>
     </div>
   </section>
