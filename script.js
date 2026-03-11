@@ -108,16 +108,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // Enhanced skills interaction
   const slides = {
     html: [
-      { src: 'img/html-structure.png', caption: 'HTML Structure & Semantics' },
-      { src: 'img/semantic.png', caption: 'Semantic Elements & Accessibility' }
+      { src: 'img/html-structure.png', caption: 'HTML Structure' },
+      { src: 'img/semantic.png', caption: 'Semantic Elements' }
     ],
     css: [
-      { src: 'img/css_box_model.png', caption: 'CSS Box Model & Layout' },
-      { src: 'img/power-of-colour-in-typography.png', caption: 'Colors, Typography & Design' }
+      { src: 'img/css_box_model.png', caption: 'Box Model & Layouts' },
+      { src: 'img/power-of-colour-in-typography.png', caption: 'Colors & Typography' }
     ],
     js: [
-      { src: 'img/dom.png', caption: 'DOM Manipulation & Events' },
-      { src: 'img/Event.jpg', caption: 'JavaScript Interactivity' }
+      { src: 'img/dom.png', caption: 'DOM Manipulation' },
+      { src: 'img/Event.jpg', caption: 'Events & Interactivity' }
     ]
   };
 
@@ -140,17 +140,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function layoutCaption() {
+      // size the caption bubble to match the tile width and 1/3 of its height,
+      // then position it directly below the tile and update grid bottom padding
       const gap = 12;
       const w = card.offsetWidth;
       const h = card.offsetHeight;
       const captionH = Math.round(h / 3);
       caption.style.width = w + 'px';
       caption.style.height = captionH + 'px';
-      caption.style.top = (h + 10) + 'px';
+      caption.style.top = (h) + 'px';
       caption.style.left = '0px';
 
+      // ensure the grid reserves enough space below tiles for the caption
       if (skillsGrid) {
-        const extra = 12;
+        const extra = 12; // extra spacing
         skillsGrid.style.paddingBottom = (captionH + gap + extra) + 'px';
       }
     }
@@ -165,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
       timer = setInterval(() => {
         idx = (idx + 1) % list.length;
         show(idx);
-      }, 2000); // Slightly slower for better viewing
+      }, 1600);
     }
 
     function stop() {
@@ -174,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
       card.classList.remove('active');
       if (btn) btn.style.opacity = '1';
       preview.style.opacity = '0';
+      // caption will hide via CSS transition
     }
 
     card.addEventListener('mouseenter', start);
@@ -181,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
     card.addEventListener('focusin', start);
     card.addEventListener('focusout', stop);
 
+    // keep caption sized if window resizes while active
     window.addEventListener('resize', () => {
       if (card.classList.contains('active')) layoutCaption();
     });
@@ -218,26 +223,6 @@ document.addEventListener('DOMContentLoaded', function () {
       this.reset();
     });
   }
-
-  // Add click ripple effect to buttons
-  document.querySelectorAll('.contact-btn, .skill-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple');
-      this.appendChild(ripple);
-
-      const rect = this.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
-      ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-  });
-});
 
   // Add click ripple effect to buttons
   document.querySelectorAll('.contact-btn, .skill-btn').forEach(button => {

@@ -46,6 +46,13 @@ header {
   align-items: center;
 }
 
+/* make the main heading stand out larger than section titles */
+header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
 header::before {
   content: '';
   position: absolute;
@@ -218,14 +225,14 @@ section h2::after {
   color: var(--muted);
 }
 
+/* removed drop cap styling so first letters are not oversized */
 .about-text p:first-letter {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--accent);
-  float: left;
-  margin-right: 0.5rem;
-  line-height: 1;
-  margin-top: 0.2rem;
+  font-size: 1.2rem; /* normal size matching paragraphs */
+  font-weight: inherit;
+  color: inherit;
+  float: none;
+  margin: 0;
+  line-height: 1.6;
 }
 
 @media (max-width:700px){
@@ -381,124 +388,103 @@ section h2::after {
   text-align: center;
 }
 
-/* Modern skills grid with enhanced animations */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  position: relative;
+/* Skills grid and cards */
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap:1rem;
+  margin-top:1rem;
+  overflow: visible; /* allow caption bubbles to overflow without pushing layout
+ */                                                                               /* bottom padding is set dynamically by JS to match caption height */
+  padding-bottom: 0;
 }
 
-.skill-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: float 6s ease-in-out infinite;
+.skill-card{
+  position:relative;
+  width:100%;
+  aspect-ratio:1 / 1; /* keep square */
+  overflow: visible; /* allow caption to sit above neighboring tiles */
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(122,11,11,0.06), transparent);
+  display:block;
+  z-index:1;
 }
 
-.skill-card:nth-child(2) {
-  animation-delay: -2s;
+.skill-btn{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--maroon);
+  color:var(--white);
+  border:none;
+  font-size:1.25rem;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(122,11,11,0.25);
+  transition:opacity 220ms ease, transform 220ms ease;
 }
 
-.skill-card:nth-child(3) {
-  animation-delay: -4s;
+.skill-btn:focus{outline:2px solid rgba(255,255,255,0.12)}
+
+/* Preview hidden by default, appears on hover of the card */
+.skill-preview{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity 220ms ease;
+  pointer-events:none;
 }
 
-.skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
-  border-color: var(--accent);
+/* clip preview images to the tile and avoid overflow */
+.skill-preview{overflow:hidden;border-radius:8px}
+
+.skill-card.active .skill-preview{
+  opacity:1;
+  pointer-events:auto;
 }
 
-.skill-btn {
-  background: var(--gradient);
-  color: var(--white);
-  border: none;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
+.skill-img{
+  width:100%;
+  height:100%;
+  object-fit:contain; /* ensure whole image fits inside the square */
+  border-radius:8px;
+  border:3px solid rgba(122,11,11,0.08);
+  background:var(--white);
+  display:block;
 }
 
-.skill-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+.skill-caption{
+  position:absolute;
+  left:0; /* align under the tile */
+  top:100%; /* sit directly below the tile */
+  background:var(--white);
+  color:#111;
+  padding:0.75rem;
+  border-radius:8px;
+  box-shadow:0 12px 36px rgba(0,0,0,0.5);
+  opacity:0;
+  transform:translateY(12px) scale(0.98);
+  transition:opacity 220ms ease, transform 220ms ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  z-index:40; /* ensure caption overlays other tiles */
+  pointer-events:auto;
 }
 
-.skill-card:hover .skill-btn::before {
-  left: 100%;
+.skill-card.active{
+  z-index:30; /* lift the active tile so its caption sits above neighbors */
 }
 
-.skill-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-}
-
-.skill-preview {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 15px;
-}
-
-.skill-card.active .skill-preview {
-  opacity: 1;
-}
-
-.skill-img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.skill-caption {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--white);
-  color: #333;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  white-space: nowrap;
-  z-index: 10;
-}
-
-.skill-card.active .skill-caption {
-  opacity: 1;
-  bottom: -20px;
+.skill-card.active .skill-caption{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
 /* Modern projects section */
@@ -792,10 +778,6 @@ img.loaded {
 /* Hover effects for interactive elements */
 .contact-btn:hover {
   transform: translateY(-3px);
-}
-
-.skill-card:hover {
-  transform: translateY(-8px) scale(1.02);
 }
 
 /* Enhanced focus states for accessibility */
