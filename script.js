@@ -239,15 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
     lastScrollY = currentScrollY;
   });
 
-  // Contact form submission
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your message! I will get back to you soon.');
-      this.reset();
-    });
-  }
+
 
   // Add click ripple effect to buttons
   document.querySelectorAll('.contact-btn, .skill-btn').forEach(button => {
@@ -267,4 +259,33 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 600);
     });
   });
+
+  // EmailJS contact form submission
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      const serviceID = 'service_w87kaze';
+      const templateID = 'template_45k2xqt';
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+          alert('Thank you! Your message has been sent successfully.');
+          contactForm.reset();
+        }, (err) => {
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+          alert('Error sending message: ' + JSON.stringify(err));
+        });
+    });
+  }
+
 });

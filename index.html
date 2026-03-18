@@ -29,6 +29,11 @@
   <link rel="preload" href="img/Presentation.png" as="image">
   <link rel="preload" href="img/Print1.JPG" as="image">
   <link rel="preload" href="img/PSModel.jpg" as="image">
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+  emailjs.init('WpbPMDS5LWfBhBCPm')
+  </script>
 </head>
 <body>
   <!-- Header section with navigation -->
@@ -141,7 +146,7 @@
     <h2>Contact</h2>
     <p>Get in touch with me! Download my resume or connect on social media.</p>
     <div class="contact-container">
-      <form class="contact-form" action="mailto:jaidenforcollege2023@gmail.com" method="post" enctype="text/plain">
+      <form class="contact-form" id="contact-form" method="post">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -154,7 +159,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" id="submit-btn" class="submit-btn">Send Message</button>
       </form>
       <div class="contact-links">
         <h3>Or connect directly:</h3>
