@@ -518,58 +518,305 @@ section h2::after {
 }
 
 /* Modern projects section */
+#projects {
+  overflow: visible;
+}
+
+.projects-intro {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.projects-timeline-wrap {
+  --timeline-card-width: min(72vw, 560px);
+  position: relative;
+  margin-top: 1rem;
+  height: clamp(480px, 60vh, 700px);
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-track {
+  position: absolute;
+  left: max(1rem, calc((100% - var(--timeline-card-width)) / 2));
+  right: max(1rem, calc((100% - var(--timeline-card-width)) / 2));
+  top: 50%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(201, 164, 106, 0.35);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.projects-timeline {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  /* Side padding keeps the center card in focus and crops neighbors on each side. */
+  padding: 0.75rem max(1rem, calc((100% - var(--timeline-card-width)) / 2)) 1.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) rgba(255, 255, 255, 0.1);
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.projects-timeline::-webkit-scrollbar {
+  height: 10px;
+}
+
+.projects-timeline::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.projects-timeline::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 999px;
+}
+
 .project {
-  margin-bottom: 3rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  backdrop-filter: none;
   transition: all 0.3s ease;
   position: relative;
+  overflow: visible;
+}
+
+.timeline-card {
+  flex: 0 0 var(--timeline-card-width);
+  margin-bottom: 0;
+  scroll-snap-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  opacity: 0.62;
+  transform: scale(0.94);
+  filter: saturate(0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  max-height: 100%;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.timeline-card::before {
+  content: none;
+}
+
+.timeline-card.active {
+  border-color: var(--accent);
+  transform: translateY(-8px) scale(1);
+  box-shadow: 0 0 30px rgba(201, 164, 106, 0.55), 0 8px 32px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  filter: saturate(1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline-card:hover {
+  opacity: 0.65;
+}
+
+.timeline-card.active:hover {
+  opacity: 1;
+}
+
+/* Flip-card structure */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.timeline-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 15px;
   overflow: hidden;
 }
 
-.project:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  border-color: #C9A46A;
+.flip-card-front {
+  background: #111;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
 }
 
-.project h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+/* Poster front: show full artwork and fill side gaps with a blurred copy. */
+.poster-front {
+  position: relative;
+  background: #120f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('img/Poster.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px) brightness(0.42);
+  transform: scale(1.08);
+  z-index: 0;
+}
+
+.poster-front .project-cover {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 90%;
+  height: clamp(280px, 60vh, 509px);
+  flex-shrink: 0;
+}
+
+.poster-front .project-front-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.8rem 0.9rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+  z-index: 2;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: rgba(16, 16, 16, 0.96);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: flex-start;
+}
+
+.project-cover {
+  width: 100%;
+  height: clamp(280px, 60vh, 509px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.project-front-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.8rem 0.9rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+
+.project-front-overlay h3 {
+  font-size: 1.2rem;
+  color: var(--white);
+  margin: 0 0 0.3rem;
+  line-height: 1.2;
+}
+
+.project-front-overlay p {
+  margin: 0;
+  color: #dcdcdc;
+  font-size: 0.85rem;
+}
+
+.project-date {
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #111;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  z-index: 3;
+}
+
+.flip-card-back h3 {
+  font-size: 1.2rem;
   color: var(--accent);
-  position: relative;
-  z-index: 1;
+  line-height: 1.25;
+  margin-top: 1.5rem;
 }
 
-.project p {
-  font-size: 1.1rem;
-  line-height: 1.7;
+.flip-card-back p {
   color: var(--muted);
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin: 0;
 }
 
-.project img {
-  max-width: 100%;
-  max-height: 400px;
-  height: auto;
-  border-radius: 10px;
-  margin: 0.5rem 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 1;
+.timeline-status {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
-.project img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+/* Legacy project text layout replaced by flip-card back text. */
+
+.project-link-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
 }
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.project-link-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(201, 164, 106, 0.35);
+}
+
+/* Legacy image sizing rules replaced by .project-cover. */
 
 
 
@@ -641,7 +888,65 @@ footer {
   }
 
   .project {
-    padding: 1.5rem;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .timeline-track {
+    left: max(0.75rem, calc((100% - var(--timeline-card-width)) / 2));
+    right: max(0.75rem, calc((100% - var(--timeline-card-width)) / 2));
+  }
+
+  .projects-timeline {
+    padding: 0.6rem max(0.75rem, calc((100% - var(--timeline-card-width)) / 2)) 1rem;
+  }
+
+  .projects-timeline-wrap {
+    height: clamp(450px, 55vh, 600px);
+  }
+
+  .timeline-card {
+    --timeline-card-width: min(82vw, 460px);
+    flex: 0 0 var(--timeline-card-width);
+    gap: 0.5rem;
+  }
+
+  .project img {
+    max-height: 470px;
+  }
+
+  .project-media-row img {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-timeline-wrap {
+    --timeline-card-width: 86vw;
+    height: clamp(420px, 50vh, 550px);
+  }
+
+  .timeline-card {
+    gap: 0.45rem;
+  }
+
+  .project h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .project p {
+    font-size: 0.8rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .project img {
+    max-height: 425px;
+  }
+
+  .project-media-row img {
+    max-height: 150px;
+    max-width: 100%;
   }
 }
 

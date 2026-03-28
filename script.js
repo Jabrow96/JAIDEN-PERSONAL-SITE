@@ -260,6 +260,100 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Projects timeline: highlight the card closest to the center while scrolling.
+  const timeline = document.getElementById('projects-timeline');
+  const timelineStatus = document.getElementById('timeline-status');
+
+  if (timeline) {
+    const timelineCards = Array.from(timeline.querySelectorAll('.timeline-card'));
+    let ticking = false;
+
+    function setActiveTimelineCard() {
+      if (!timelineCards.length) return;
+
+      const centerX = timeline.scrollLeft + timeline.clientWidth / 2;
+      let closestCard = timelineCards[0];
+      let closestDistance = Infinity;
+
+      timelineCards.forEach((card) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(centerX - cardCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestCard = card;
+        }
+      });
+
+      timelineCards.forEach((card) => {
+        const isActive = card === closestCard;
+        card.classList.toggle('active', isActive);
+
+        // Keep inactive cards on the image side while scrolling.
+        if (!isActive) {
+          card.classList.remove('flipped');
+        }
+      });
+
+      if (timelineStatus) {
+        const title = closestCard.querySelector('h3');
+        timelineStatus.textContent = title
+          ? `Now viewing: ${title.textContent}`
+          : 'Now viewing: Project';
+      }
+    }
+
+    timeline.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        setActiveTimelineCard();
+        ticking = false;
+      });
+    });
+
+    // Click a card to center it, then flip it.
+    timelineCards.forEach((card) => {
+      card.addEventListener('click', (event) => {
+        // Allow links on card backs to work as normal.
+        if (event.target.closest('a')) return;
+
+        // Keep one flipped card open at a time.
+        timelineCards.forEach((other) => {
+          if (other !== card) other.classList.remove('flipped');
+        });
+
+        card.classList.toggle('flipped');
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+
+      // Keyboard support for flipping cards.
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          timelineCards.forEach((other) => {
+            if (other !== card) other.classList.remove('flipped');
+          });
+          card.classList.toggle('flipped');
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+    });
+
+    // Simple keyboard support for timeline scrolling.
+    timeline.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        timeline.scrollBy({ left: 320, behavior: 'smooth' });
+      }
+      if (event.key === 'ArrowLeft') {
+        timeline.scrollBy({ left: -320, behavior: 'smooth' });
+      }
+    });
+
+    setActiveTimelineCard();
+    window.addEventListener('resize', setActiveTimelineCard);
+  }
+
   // EmailJS contact form submission
   const contactForm = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');

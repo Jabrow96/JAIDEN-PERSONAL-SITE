@@ -124,21 +124,72 @@
   <!-- Projects section -->
   <section id="projects">
     <h2>Projects</h2>
-    <div class="project">
-      <h3>Project 1 - Recreation of the Omnitrix From "Ben 10"</h3>
-      <p>In October 2024, I took on the project of recreating the Omnitrix from my favorite childhood cartoon called Ben 10. I had recently gotten a 3D printer and wanted to try a bigger project than I had done before in school. I found a file of the watch online but I wanted MY watch to be able to retract and twist just like how it does in the show. So I ended up modifying the internals of the watch over the course of around three weeks and developed a successful mechanism after several prototypes. I then spent a couple hours priming, sanding, and painting it in order to get the esthetic I wanted.</p>
-      <img src="img/20260119_214536.jpg" alt="Project 1 Screenshot">
-      <img src="img/20260119_214632.jpg" alt="Project 1 Screenshot">
+    <p class="projects-intro">Scroll sideways through my project timeline. The card in the center becomes the active project.</p>
+
+    <div class="projects-timeline-wrap">
+      <!-- Horizontal scroller: each card snaps into place -->
+      <div class="projects-timeline" id="projects-timeline" tabindex="0">
+        <!-- Click a card to flip: front = image, back = text details -->
+        <article class="project timeline-card active" data-year="2024" tabindex="0" aria-label="Project 1 card. Click to flip.">
+          <div class="flip-card-inner">
+            <div class="flip-card-face flip-card-front poster-front">
+              <span class="project-date">2024</span>
+              <img class="project-cover" src="img/Poster.png" alt="Typography Poster">
+              <div class="project-front-overlay">
+                <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
+                <p>Click to read more</p>
+              </div>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <span class="project-date">2024</span>
+              <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
+              <p>A typography study poster featuring the Benguiat font, built in Adobe Illustrator and InDesign.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project timeline-card" data-year="2024" tabindex="0" aria-label="Project 2 card. Click to flip.">
+          <div class="flip-card-inner">
+            <div class="flip-card-face flip-card-front">
+              <span class="project-date">2024</span>
+              <img class="project-cover" src="img/20260119_214536.jpg" alt="Omnitrix project cover image">
+              <div class="project-front-overlay">
+                <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
+                <p>Click to read more</p>
+              </div>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <span class="project-date">2024</span>
+              <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
+              <p>In October 2024, I recreated the Omnitrix from Ben 10 using 3D printing. I modified the internal mechanism through several prototypes so it could retract and twist like the show version, then finished it by sanding, priming, and painting.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project timeline-card" data-year="2026" tabindex="0" aria-label="Project 3 card. Click to flip.">
+          <div class="flip-card-inner">
+            <div class="flip-card-face flip-card-front">
+              <span class="project-date">2026</span>
+              <img class="project-cover" src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Music tempo survey screenshot">
+              <div class="project-front-overlay">
+                <h3>Project 3 - Music Tempo Survey</h3>
+                <p>Click to read more</p>
+              </div>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <span class="project-date">2026</span>
+              <h3>Project 3 - Music Tempo Survey</h3>
+              <p>This project studied how music tempo affects attention during a reaction-time task related to driving. I designed and launched a survey through two services to collect participant data and compare distraction and response patterns.</p>
+              <p class="project-link-row">
+                <a class="project-link-btn" href="https://jabrow96.github.io/Music-Tempo/" target="_blank" rel="noopener">Link to Survey</a>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
-    <div class="project">
-      <h3>Project 2 - Music Tempo Survey</h3>
-      <p>This research project aimed to investigate the impact of music tempo on attention during a reaction-time task that simulates aspects of driving. Previous studies suggested that music can both help and hinder attention, depending on factors like tempo and task difficulty. By collecting data on reaction times and self-reported distraction, I hoped to better understand how music listening may influence safety-related behaviors. I created a survey to collect this data and linked it through a two different services in order to collect data from real people.</p>
-      <p>
-        <a class="contact-btn" href="https://jabrow96.github.io/Music-Tempo/" target="_blank" rel="noopener">Link to Survey!</a>
-      </p>
-      <img src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Project 2 Screenshot">
-    </div>
-    <!-- Add more projects later -->
+
+    <p class="timeline-status" id="timeline-status">Now viewing: Project 1 - Poster Showcasing the Benguiat Font</p>
   </section>
 
   <!-- Contact section -->
