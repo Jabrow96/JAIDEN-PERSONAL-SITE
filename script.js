@@ -86,25 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Intersection Observer for fade-in animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-      }
-    });
-  }, observerOptions);
-
-  // Observe all sections for animation
-  document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
-  });
-
   // Enhanced skills interaction
   const slides = {
     html: [
@@ -217,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Add parallax effect to header (subtle)
-  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
     const header = document.querySelector('header');
@@ -225,7 +205,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const translateY = currentScrollY * 0.5;
       header.style.transform = `translateY(${translateY}px)`;
     }
-    lastScrollY = currentScrollY;
   });
 
 

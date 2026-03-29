@@ -1,12 +1,9 @@
 :root{
   --bg: #0a0a0a; /* Darker, more professional black */
-  --paper: #1a1a1a; /* Slightly lighter for cards */
   --accent: #F5E6C8; /* Modern orange accent */
-  --accent-dark: #C9A46A;
   --white: #ffffff;
   --muted: #b0b0b0;
   --text: #f5f5f5;
-  --shadow: #C9A46A;
   --gradient: linear-gradient(135deg, #711B1B 0%, #2D0303 100%);
 }
 
@@ -445,7 +442,7 @@ section h2::after {
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--maroon);
+  background: var(--gradient);
   color:var(--white);
   border:none;
   font-size:1.25rem;
@@ -904,9 +901,6 @@ footer {
 }
 
 /* Apply animations to sections */
-section.animate-in {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
 
 .about-inner > *:nth-child(1) {
   animation: slideInLeft 0.8s ease-out 0.2s both;
@@ -916,17 +910,8 @@ section.animate-in {
   animation: slideInRight 0.8s ease-out 0.4s both;
 }
 
-.skill-card:nth-child(odd) {
-  animation: fadeInUp 0.6s ease-out calc(var(--i) * 0.1s) both;
-}
-
-.skill-card:nth-child(even) {
-  animation: fadeInUp 0.6s ease-out calc(var(--i) * 0.1s + 0.2s) both;
-}
-
 .project {
   animation: fadeIn 0.8s ease-out both;
-  animation-delay: calc(var(--i) * 0.2s);
 }
 
 /* Ripple effect for buttons */
