@@ -530,43 +530,23 @@ section h2::after {
 }
 
 .projects-timeline-wrap {
-  --timeline-card-width: min(72vw, 560px);
-  position: relative;
+  --timeline-card-width: clamp(16rem, 64vw, 21rem);
   margin-top: 1rem;
-  height: clamp(480px, 60vh, 700px);
-  display: flex;
-  flex-direction: column;
-}
-
-.timeline-track {
-  position: absolute;
-  left: max(1rem, calc((100% - var(--timeline-card-width)) / 2));
-  right: max(1rem, calc((100% - var(--timeline-card-width)) / 2));
-  top: 50%;
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(201, 164, 106, 0.35);
-  transform: translateY(-50%);
-  pointer-events: none;
 }
 
 .projects-timeline {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  /* Side padding keeps the center card in focus and crops neighbors on each side. */
-  padding: 0.75rem max(1rem, calc((100% - var(--timeline-card-width)) / 2)) 1.25rem;
+  padding: 0.5rem max(0.75rem, calc((100% - var(--timeline-card-width)) / 2)) 1rem;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) rgba(255, 255, 255, 0.1);
-  position: relative;
-  flex: 1;
-  min-height: 0;
 }
 
 .projects-timeline::-webkit-scrollbar {
-  height: 10px;
+  height: 0.5rem;
 }
 
 .projects-timeline::-webkit-scrollbar-track {
@@ -586,163 +566,78 @@ section h2::after {
   border-radius: 0;
   border: none;
   backdrop-filter: none;
-  transition: all 0.3s ease;
   position: relative;
-  overflow: visible;
 }
 
 .timeline-card {
   flex: 0 0 var(--timeline-card-width);
-  margin-bottom: 0;
   scroll-snap-align: center;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  padding: 0;
+  border: 0.12rem solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  opacity: 0.62;
-  transform: scale(0.94);
-  filter: saturate(0.85);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  backdrop-filter: blur(0.625rem);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  opacity: 0.72;
+  transform: scale(0.97);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  max-height: 100%;
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
-  perspective: 1200px;
-}
-
-.timeline-card::before {
-  content: none;
 }
 
 .timeline-card.active {
   border-color: var(--accent);
-  transform: translateY(-8px) scale(1);
-  box-shadow: 0 0 30px rgba(201, 164, 106, 0.55), 0 8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(-0.35rem) scale(1);
+  box-shadow: 0 0 1.5rem rgba(201, 164, 106, 0.55), 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
   opacity: 1;
-  filter: saturate(1);
   background: rgba(255, 255, 255, 0.08);
 }
 
 .timeline-card:hover {
-  opacity: 0.65;
+  opacity: 0.88;
 }
 
 .timeline-card.active:hover {
   opacity: 1;
 }
 
-/* Flip-card structure */
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 360px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
-.timeline-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.flip-card-front {
-  background: #111;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: stretch;
-}
-
-/* Poster front: show full artwork and fill side gaps with a blurred copy. */
-.poster-front {
-  position: relative;
-  background: #120f0f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.poster-front::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('img/Poster.png');
-  background-size: cover;
-  background-position: center;
-  filter: blur(16px) brightness(0.42);
-  transform: scale(1.08);
-  z-index: 0;
-}
-
-.poster-front .project-cover {
-  position: relative;
-  z-index: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 90%;
-  height: clamp(280px, 60vh, 509px);
-  flex-shrink: 0;
-}
-
-.poster-front .project-front-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.8rem 0.9rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
-  z-index: 2;
-}
-
-.flip-card-back {
-  transform: rotateY(180deg);
-  background: rgba(16, 16, 16, 0.96);
-  padding: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  justify-content: flex-start;
-}
-
 .project-cover {
   width: 100%;
-  height: clamp(280px, 60vh, 509px);
+  height: 14rem;
   object-fit: cover;
   object-position: center;
   display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.project-front-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.8rem 0.9rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+.project-cover-contain {
+  object-fit: contain;
+  padding: 0.75rem;
+  background: #120f0f;
 }
 
-.project-front-overlay h3 {
-  font-size: 1.2rem;
+.project-details {
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.project-details h3 {
+  font-size: 1.1rem;
   color: var(--white);
-  margin: 0 0 0.3rem;
-  line-height: 1.2;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.project-front-overlay p {
+.project-details p {
   margin: 0;
-  color: #dcdcdc;
-  font-size: 0.85rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .project-date {
@@ -756,21 +651,7 @@ section h2::after {
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
-  z-index: 3;
-}
-
-.flip-card-back h3 {
-  font-size: 1.2rem;
-  color: var(--accent);
-  line-height: 1.25;
-  margin-top: 1.5rem;
-}
-
-.flip-card-back p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  margin: 0;
+  z-index: 2;
 }
 
 .timeline-status {
@@ -816,7 +697,7 @@ section h2::after {
   box-shadow: 0 0 14px rgba(201, 164, 106, 0.35);
 }
 
-/* Legacy image sizing rules replaced by .project-cover. */
+/* End Projects section styles */
 
 
 
@@ -887,66 +768,48 @@ footer {
     gap: 2rem;
   }
 
-  .project {
-    padding: 0;
-    margin-bottom: 0;
-  }
-
-  .timeline-track {
-    left: max(0.75rem, calc((100% - var(--timeline-card-width)) / 2));
-    right: max(0.75rem, calc((100% - var(--timeline-card-width)) / 2));
+  .projects-timeline-wrap {
+    --timeline-card-width: clamp(15rem, 78vw, 19rem);
   }
 
   .projects-timeline {
-    padding: 0.6rem max(0.75rem, calc((100% - var(--timeline-card-width)) / 2)) 1rem;
-  }
-
-  .projects-timeline-wrap {
-    height: clamp(450px, 55vh, 600px);
+    padding: 0.45rem max(0.6rem, calc((100% - var(--timeline-card-width)) / 2)) 0.9rem;
   }
 
   .timeline-card {
-    --timeline-card-width: min(82vw, 460px);
     flex: 0 0 var(--timeline-card-width);
-    gap: 0.5rem;
+    min-height: 28rem;
   }
 
-  .project img {
-    max-height: 470px;
-  }
-
-  .project-media-row img {
-    max-height: 180px;
+  .project-cover {
+    height: 12rem;
   }
 }
 
 @media (max-width: 480px) {
   .projects-timeline-wrap {
-    --timeline-card-width: 86vw;
-    height: clamp(420px, 50vh, 550px);
+    --timeline-card-width: clamp(14rem, 84vw, 17rem);
+  }
+
+  .projects-timeline {
+    gap: 0.8rem;
+    padding: 0.4rem max(0.5rem, calc((100% - var(--timeline-card-width)) / 2)) 0.75rem;
   }
 
   .timeline-card {
-    gap: 0.45rem;
+    min-height: 26rem;
   }
 
-  .project h3 {
+  .project-cover {
+    height: 10.5rem;
+  }
+
+  .project-details h3 {
     font-size: 1rem;
-    margin-bottom: 0.3rem;
   }
 
-  .project p {
-    font-size: 0.8rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .project img {
-    max-height: 425px;
-  }
-
-  .project-media-row img {
-    max-height: 150px;
-    max-width: 100%;
+  .project-details p {
+    font-size: 0.85rem;
   }
 }
 
@@ -1052,19 +915,6 @@ section.animate-in {
 .project {
   animation: fadeIn 0.8s ease-out both;
   animation-delay: calc(var(--i) * 0.2s);
-}
-
-/* Image loading animation */
-img {
-  transition: opacity 0.3s ease;
-}
-
-img:not(.loaded) {
-  opacity: 0;
-}
-
-img.loaded {
-  opacity: 1;
 }
 
 /* Ripple effect for buttons */

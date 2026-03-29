@@ -216,17 +216,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Add loading animation to images
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    img.addEventListener('load', function() {
-      this.classList.add('loaded');
-    });
-    if (img.complete) {
-      img.classList.add('loaded');
-    }
-  });
-
   // Add parallax effect to header (subtle)
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
@@ -287,11 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
       timelineCards.forEach((card) => {
         const isActive = card === closestCard;
         card.classList.toggle('active', isActive);
-
-        // Keep inactive cards on the image side while scrolling.
-        if (!isActive) {
-          card.classList.remove('flipped');
-        }
       });
 
       if (timelineStatus) {
@@ -312,29 +296,18 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Click a card to center it, then flip it.
+    // Click a card to center it in the timeline.
     timelineCards.forEach((card) => {
       card.addEventListener('click', (event) => {
-        // Allow links on card backs to work as normal.
+        // Allow project links to work normally.
         if (event.target.closest('a')) return;
-
-        // Keep one flipped card open at a time.
-        timelineCards.forEach((other) => {
-          if (other !== card) other.classList.remove('flipped');
-        });
-
-        card.classList.toggle('flipped');
         card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       });
 
-      // Keyboard support for flipping cards.
+      // Keyboard support for centering cards.
       card.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          timelineCards.forEach((other) => {
-            if (other !== card) other.classList.remove('flipped');
-          });
-          card.classList.toggle('flipped');
           card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
       });
@@ -342,11 +315,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Simple keyboard support for timeline scrolling.
     timeline.addEventListener('keydown', (event) => {
+      const scrollStep = timeline.clientWidth * 0.8;
+
       if (event.key === 'ArrowRight') {
-        timeline.scrollBy({ left: 320, behavior: 'smooth' });
+        timeline.scrollBy({ left: scrollStep, behavior: 'smooth' });
       }
       if (event.key === 'ArrowLeft') {
-        timeline.scrollBy({ left: -320, behavior: 'smooth' });
+        timeline.scrollBy({ left: -scrollStep, behavior: 'smooth' });
       }
     });
 

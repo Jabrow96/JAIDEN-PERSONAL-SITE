@@ -59,7 +59,7 @@
     <div class="about-inner">
       <img src="img/melovesign.jpg" alt="Jaiden Brown" class="about-img">
       <div class="about-text">
-        <p>Hello! I'm Jaiden, a junior at Arizona State University studying Human Systems Engineering with a focus in user experience. I enjoy skating, 3D printing, and gaming in my free time. I strive to be as helpful and as versatile as possible in whatever tasks I take on.</p>
+        <p>Hello! I'm Jaiden Brown, a junior at Arizona State University studying Human Systems Engineering with a focus in user experience. I enjoy skating, 3D printing, and gaming in my free time. I strive to be as helpful and as versatile as possible in whatever tasks I take on.</p>
         <p>This is my personal portfolio where I showcase my projects and skills. I'm passionate about creating innovative solutions that combine technology with human-centered design.</p>
       </div>
     </div>
@@ -124,66 +124,39 @@
   <!-- Projects section -->
   <section id="projects">
     <h2>Projects</h2>
-    <p class="projects-intro">Scroll sideways through my project timeline. The card in the center becomes the active project.</p>
+    <p class="projects-intro">Scroll sideways through my project timeline. The card in the center becomes the active project. Individual and more in-depth project pages will be available soon.</p>
 
     <div class="projects-timeline-wrap">
       <!-- Horizontal scroller: each card snaps into place -->
       <div class="projects-timeline" id="projects-timeline" tabindex="0">
-        <!-- Click a card to flip: front = image, back = text details -->
-        <article class="project timeline-card active" data-year="2024" tabindex="0" aria-label="Project 1 card. Click to flip.">
-          <div class="flip-card-inner">
-            <div class="flip-card-face flip-card-front poster-front">
-              <span class="project-date">2024</span>
-              <img class="project-cover" src="img/Poster.png" alt="Typography Poster">
-              <div class="project-front-overlay">
-                <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
-                <p>Click to read more</p>
-              </div>
-            </div>
-            <div class="flip-card-face flip-card-back">
-              <span class="project-date">2024</span>
-              <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
-              <p>A typography study poster featuring the Benguiat font, built in Adobe Illustrator and InDesign.</p>
-            </div>
+        <!-- Each card shows the image and project details together -->
+        <article class="project timeline-card active" data-year="2024" tabindex="0" aria-label="Project 1 card.">
+          <span class="project-date">2024</span>
+          <img class="project-cover project-cover-contain" src="img/Poster.png" alt="Typography poster showcasing the Benguiat font">
+          <div class="project-details">
+            <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
+            <p>A typography study poster featuring the Benguiat font, built in Adobe Illustrator and InDesign.</p>
           </div>
         </article>
 
-        <article class="project timeline-card" data-year="2024" tabindex="0" aria-label="Project 2 card. Click to flip.">
-          <div class="flip-card-inner">
-            <div class="flip-card-face flip-card-front">
-              <span class="project-date">2024</span>
-              <img class="project-cover" src="img/20260119_214536.jpg" alt="Omnitrix project cover image">
-              <div class="project-front-overlay">
-                <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
-                <p>Click to read more</p>
-              </div>
-            </div>
-            <div class="flip-card-face flip-card-back">
-              <span class="project-date">2024</span>
-              <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
-              <p>In October 2024, I recreated the Omnitrix from Ben 10 using 3D printing. I modified the internal mechanism through several prototypes so it could retract and twist like the show version, then finished it by sanding, priming, and painting.</p>
-            </div>
+        <article class="project timeline-card" data-year="2024" tabindex="0" aria-label="Project 2 card.">
+          <span class="project-date">2024</span>
+          <img class="project-cover" src="img/20260119_214536.jpg" alt="Omnitrix 3D printing project cover image">
+          <div class="project-details">
+            <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
+            <p>In October 2024, I recreated the Omnitrix from Ben 10 using 3D printing. I modified the internal mechanism through several prototypes so it could retract and twist like the show version, then finished it by sanding, priming, and painting.</p>
           </div>
         </article>
 
-        <article class="project timeline-card" data-year="2026" tabindex="0" aria-label="Project 3 card. Click to flip.">
-          <div class="flip-card-inner">
-            <div class="flip-card-face flip-card-front">
-              <span class="project-date">2026</span>
-              <img class="project-cover" src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Music tempo survey screenshot">
-              <div class="project-front-overlay">
-                <h3>Project 3 - Music Tempo Survey</h3>
-                <p>Click to read more</p>
-              </div>
-            </div>
-            <div class="flip-card-face flip-card-back">
-              <span class="project-date">2026</span>
-              <h3>Project 3 - Music Tempo Survey</h3>
-              <p>This project studied how music tempo affects attention during a reaction-time task related to driving. I designed and launched a survey through two services to collect participant data and compare distraction and response patterns.</p>
-              <p class="project-link-row">
-                <a class="project-link-btn" href="https://jabrow96.github.io/Music-Tempo/" target="_blank" rel="noopener">Link to Survey</a>
-              </p>
-            </div>
+        <article class="project timeline-card" data-year="2026" tabindex="0" aria-label="Project 3 card.">
+          <span class="project-date">2026</span>
+          <img class="project-cover" src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Music tempo survey project screenshot">
+          <div class="project-details">
+            <h3>Project 3 - Music Tempo Survey</h3>
+            <p>This project studied how music tempo affects attention during a reaction-time task related to driving. I designed and launched a survey through two services to collect participant data and compare distraction and response patterns.</p>
+            <p class="project-link-row">
+              <a class="project-link-btn" href="https://jabrow96.github.io/Music-Tempo/" target="_blank" rel="noopener">Link to Survey</a>
+            </p>
           </div>
         </article>
       </div>
