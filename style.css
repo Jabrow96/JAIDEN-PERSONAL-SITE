@@ -613,8 +613,9 @@ section h2::after {
 }
 
 .project-cover-contain {
+  height: 17.5rem;
   object-fit: contain;
-  padding: 0.75rem;
+  padding: 0.55rem;
   background: #120f0f;
 }
 
@@ -624,6 +625,7 @@ section h2::after {
   flex-direction: column;
   gap: 0.65rem;
   flex: 1;
+  text-align: center;
 }
 
 .project-details h3 {
@@ -693,6 +695,8 @@ section h2::after {
 }
 
 .project-link-btn:hover {
+  background: var(--gradient);
+  color: var(--white);
   border-color: var(--accent);
   box-shadow: 0 0 14px rgba(201, 164, 106, 0.35);
 }
@@ -784,6 +788,10 @@ footer {
   .project-cover {
     height: 12rem;
   }
+
+  .project-cover-contain {
+    height: 15.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -802,6 +810,10 @@ footer {
 
   .project-cover {
     height: 10.5rem;
+  }
+
+  .project-cover-contain {
+    height: 13.5rem;
   }
 
   .project-details h3 {

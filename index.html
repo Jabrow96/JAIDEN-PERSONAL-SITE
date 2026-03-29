@@ -7,28 +7,30 @@
   <title>Jaiden Brown - Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="img/icons/kirb.ico">
-  <!-- Preload skill images for faster hover -->
-  <link rel="preload" href="img/Website HTML.png" as="image">
-  <link rel="preload" href="img/html-structure.png" as="image">
-  <link rel="preload" href="img/semantic.png" as="image">
-  <link rel="preload" href="img/Website CSS.png" as="image">
-  <link rel="preload" href="img/css_box_model.png" as="image">
-  <link rel="preload" href="img/power-of-colour-in-typography.png" as="image">
-  <link rel="preload" href="img/Website Javascript.png" as="image">
-  <link rel="preload" href="img/dom.png" as="image">
-  <link rel="preload" href="img/Event.jpg" as="image">
-  <link rel="preload" href="img/CubeAssem.png" as="image">
-  <link rel="preload" href="img/CubeDrawing.png" as="image">
-  <link rel="preload" href="img/(LQ) Port of Call.jpg" as="image">
-  <link rel="preload" href="img/fcc-poster_mockup_palette-2.jpg" as="image">
-  <link rel="preload" href="img/CP1_Brown.jpg" as="image">
-  <link rel="preload" href="img/Poster-GShock.gif" as="image">
-  <link rel="preload" href="img/3.1 - Copying the Masters.png" as="image">
-  <link rel="preload" href="img/Word.png" as="image">
-  <link rel="preload" href="img/Excel.png" as="image">
-  <link rel="preload" href="img/Presentation.png" as="image">
-  <link rel="preload" href="img/Print1.JPG" as="image">
-  <link rel="preload" href="img/PSModel.jpg" as="image">
+  <!-- Preload only the first important image; too many preloads can slow initial page rendering. -->
+  <link rel="preload" href="img/melovesign.jpg" as="image">
+  <!-- Prefetch preview images so they can load in the background for later hovers/taps. -->
+  <link rel="prefetch" href="img/Website HTML.png" as="image">
+  <link rel="prefetch" href="img/html-structure.png" as="image">
+  <link rel="prefetch" href="img/semantic.png" as="image">
+  <link rel="prefetch" href="img/Website CSS.png" as="image">
+  <link rel="prefetch" href="img/css_box_model.png" as="image">
+  <link rel="prefetch" href="img/power-of-colour-in-typography.png" as="image">
+  <link rel="prefetch" href="img/Website Javascript.png" as="image">
+  <link rel="prefetch" href="img/dom.png" as="image">
+  <link rel="prefetch" href="img/Event.jpg" as="image">
+  <link rel="prefetch" href="img/CubeAssem.png" as="image">
+  <link rel="prefetch" href="img/CubeDrawing.png" as="image">
+  <link rel="prefetch" href="img/(LQ) Port of Call.jpg" as="image">
+  <link rel="prefetch" href="img/fcc-poster_mockup_palette-2.jpg" as="image">
+  <link rel="prefetch" href="img/CP1_Brown.jpg" as="image">
+  <link rel="prefetch" href="img/Poster-GShock.gif" as="image">
+  <link rel="prefetch" href="img/3.1 - Copying the Masters.png" as="image">
+  <link rel="prefetch" href="img/Word.png" as="image">
+  <link rel="prefetch" href="img/Excel.png" as="image">
+  <link rel="prefetch" href="img/Presentation.png" as="image">
+  <link rel="prefetch" href="img/Print1.JPG" as="image">
+  <link rel="prefetch" href="img/PSModel.jpg" as="image">
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -57,7 +59,7 @@
   <section id="about">
     <h2>About Me</h2>
     <div class="about-inner">
-      <img src="img/melovesign.jpg" alt="Jaiden Brown" class="about-img">
+      <img src="img/melovesign.jpg" alt="Jaiden Brown" class="about-img" loading="eager" decoding="async" fetchpriority="high">
       <div class="about-text">
         <p>Hello! I'm Jaiden Brown, a junior at Arizona State University studying Human Systems Engineering with a focus in user experience. I enjoy skating, 3D printing, and gaming in my free time. I strive to be as helpful and as versatile as possible in whatever tasks I take on.</p>
         <p>This is my personal portfolio where I showcase my projects and skills. I'm passionate about creating innovative solutions that combine technology with human-centered design.</p>
@@ -73,49 +75,49 @@
       <!-- Only three skill tiles for current skills -->
       <div class="skill-card" data-skill="html">
         <button class="skill-btn">HTML</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="HTML preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="HTML preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">HTML structure and elements</div>
       </div>
 
       <div class="skill-card" data-skill="css">
         <button class="skill-btn">CSS</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="CSS preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="CSS preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Styling, colors, and layouts</div>
       </div>
 
       <div class="skill-card" data-skill="js">
         <button class="skill-btn">JavaScript</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="JS preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="JS preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Interactivity and DOM</div>
       </div>
 
       <div class="skill-card" data-skill="CAD">
         <button class="skill-btn">SolidWorks</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="CAD preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="CAD preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Modeling with SolidWorks</div>
       </div>
       
       <div class="skill-card" data-skill="GD">
         <button class="skill-btn">Graphic Design</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="Graphic Design preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="Graphic Design preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Design and layout</div>
       </div>
     
       <div class="skill-card" data-skill="Adobe">
         <button class="skill-btn">Adobe PS, Ai, Id</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="Adobe skills preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="Adobe skills preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Proficiency in Photoshop, Illustrator, and InDesign</div>
       </div>
     
       <div class="skill-card" data-skill="Microsoft">
         <button class="skill-btn">Microsoft 365</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="Microsoft skills preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="Microsoft skills preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Proficiency in Word, Excel, and PowerPoint</div>
       </div>
 
       <div class="skill-card" data-skill="Model">
         <button class="skill-btn">3D Modeling</button>
-        <div class="skill-preview"><img src="#" class="skill-img" alt="3D modeling preview"></div>
+        <div class="skill-preview"><img src="#" class="skill-img" alt="3D modeling preview" loading="lazy" decoding="async"></div>
         <div class="skill-caption">Proficiency in 3D modeling and printing</div>
       </div>
     </div>
@@ -132,7 +134,7 @@
         <!-- Each card shows the image and project details together -->
         <article class="project timeline-card active" data-year="2024" tabindex="0" aria-label="Project 1 card.">
           <span class="project-date">2024</span>
-          <img class="project-cover project-cover-contain" src="img/Poster.png" alt="Typography poster showcasing the Benguiat font">
+          <img class="project-cover project-cover-contain" src="img/Poster.png" alt="Typography poster showcasing the Benguiat font" loading="lazy" decoding="async" fetchpriority="low">
           <div class="project-details">
             <h3>Project 1 - Poster Showcasing the Benguiat Font</h3>
             <p>A typography study poster featuring the Benguiat font, built in Adobe Illustrator and InDesign.</p>
@@ -141,7 +143,7 @@
 
         <article class="project timeline-card" data-year="2024" tabindex="0" aria-label="Project 2 card.">
           <span class="project-date">2024</span>
-          <img class="project-cover" src="img/20260119_214536.jpg" alt="Omnitrix 3D printing project cover image">
+          <img class="project-cover" src="img/20260119_214536.jpg" alt="Omnitrix 3D printing project cover image" loading="lazy" decoding="async" fetchpriority="low">
           <div class="project-details">
             <h3>Project 2 - Recreation of the Omnitrix From "Ben 10"</h3>
             <p>In October 2024, I recreated the Omnitrix from Ben 10 using 3D printing. I modified the internal mechanism through several prototypes so it could retract and twist like the show version, then finished it by sanding, priming, and painting.</p>
@@ -150,7 +152,7 @@
 
         <article class="project timeline-card" data-year="2026" tabindex="0" aria-label="Project 3 card.">
           <span class="project-date">2026</span>
-          <img class="project-cover" src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Music tempo survey project screenshot">
+          <img class="project-cover" src="img/Opera Snapshot_2026-01-26_052838_jabrow96.github.io.png" alt="Music tempo survey project screenshot" loading="lazy" decoding="async" fetchpriority="low">
           <div class="project-details">
             <h3>Project 3 - Music Tempo Survey</h3>
             <p>This project studied how music tempo affects attention during a reaction-time task related to driving. I designed and launched a survey through two services to collect participant data and compare distraction and response patterns.</p>
@@ -189,7 +191,7 @@
         <h3>Or connect directly:</h3>
         <div class="contact-buttons">
           <a class="contact-btn" href="https://instagram.com/im.justj/" target="_blank" rel="noopener">
-            <img class="contact-icon" src="img/icons/Instagram_logo_2022.svg" alt="Instagram Icon">
+            <img class="contact-icon" src="img/icons/Instagram_logo_2022.svg" alt="Instagram Icon" loading="lazy" decoding="async">
             <span>Instagram</span>
           </a>
 
@@ -201,22 +203,22 @@
           </a>
 
           <a class="contact-btn" href="mailto:jaidenforcollege2023@gmail.com">
-            <img alt="Gmail Icon" src="img/icons/Gmail_icon_(2020).svg">
+            <img alt="Gmail Icon" src="img/icons/Gmail_icon_(2020).svg" loading="lazy" decoding="async">
             <span>Email</span>
           </a>
 
           <a class="contact-btn" href="https://www.linkedin.com/in/jaiden-brown-9a62a03b1/" target="_blank" rel="noopener">
-            <img alt="LinkedIn Icon" src="img/icons/LinkedIn_icon.svg">
+            <img alt="LinkedIn Icon" src="img/icons/LinkedIn_icon.svg" loading="lazy" decoding="async">
             <span>LinkedIn</span>
           </a>
 
           <a class="contact-btn" href="https://profile.indeed.com/p/jaidenb-jrpjpvy" target="_blank" rel="noopener">
-            <img src="img/icons/indeedlogo.svg" alt="Indeed logo">
+            <img src="img/icons/indeedlogo.svg" alt="Indeed logo" loading="lazy" decoding="async">
             <span>Indeed</span>
           </a>
 
           <a class="contact-btn" href="Jaiden_Brown_Resume_2026.pdf" download>
-            <img class="resume-icon" src="img/icons/pages-svgrepo-com.svg" alt="Resume">
+            <img class="resume-icon" src="img/icons/pages-svgrepo-com.svg" alt="Resume" loading="lazy" decoding="async">
             <span>Resume</span>
           </a>
         </div>
